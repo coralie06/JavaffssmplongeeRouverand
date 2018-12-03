@@ -5,6 +5,7 @@ package FFSSM;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
 
 public class Club {
 
@@ -16,21 +17,32 @@ public class Club {
     public String adresse;
 
     public String telephone;
+    
+    public TreeSet<Plongee> lesPlongees;
+    
+    public TreeSet<Plongee> LesPlongeesNonConformes;
 
     public Club(Moniteur président, String nom, String telephone) {
         this.president = président;
         this.nom = nom;
         this.telephone = telephone;
+       lesPlongees = new TreeSet<>();
+       LesPlongeesNonConformes = new TreeSet<>();
     }
 
     public Set<Plongee> plongeesNonConformes() {
-         // TODO: Implémenter cette méthode
-        throw new UnsupportedOperationException("Pas encore implémenté");
+      for (Plongee g : lesPlongees ) {
+          
+          if (g.estConforme()==false){
+              LesPlongeesNonConformes.add(g);
+          } 
+      }  
+       return  LesPlongeesNonConformes;  
     }
-
+    
     public void organisePlongee(Plongee p) {
-         // TODO: Implémenter cette méthode
-        throw new UnsupportedOperationException("Pas encore implémenté");
+    
+        lesPlongees.add(p);
     }
     
     
